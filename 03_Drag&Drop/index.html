@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title></title>
+    <style>
+      #gallery { float: right; width: 65%; min-height: 12em; }
+      .gallery.custom-state-active { background: #eee; }
+      .gallery li { float: left; width: 96px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; list-style-type: none; position: absolute;}
+      .gallery li h5 { margin: 0 0 0.4em; cursor: move; }
+      .gallery li a { float: right; }
+      .gallery li a.ui-icon-zoomin { float: left; }
+      .gallery li img { cursor: move; }
+     
+      #trash { float: left; width: 30%; min-height: 16em; padding: 1%; margin-left: 100px; margin-top: -40px; }
+      #trash h4 { line-height: 16px; margin: 0 0 0.4em; }
+      #trash h4 .ui-icon { float: left; }
+      #trash .gallery li { display: none; }
+    </style>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="content">
+        <img src="images/img19_6.png" class="img6" width="636">
+        <ul id="gallery" class="gallery ui-helper-reset ui-helper-clearfix">
+            <li class="ui-widget-content ui-corner-tr item-1"><img src="images/img19_4.png" class="img4 gift"></li>
+            <li class="ui-widget-content ui-corner-tr item-2"><img src="images/img19_5.png" class="img5 gift"></li>
+            <li class="ui-widget-content ui-corner-tr item-3"><img src="images/img19_3.png" class="img3 gift"></li>
+            <li class="ui-widget-content ui-corner-tr item-4"><img src="images/img19_2.png" class="img2 gift"></li>
+        </ul>
+        <div id="trash" class="ui-widget-content ui-state-default"><img src="images/img19_1.png" class="img1" width="566"></div>
+        <div class="img7"></div>
+        <div class="img8"></div>
+    </div>
+
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script>
+      $( function() {
+     
+        // There's the gallery and the trash
+        var $gallery = $( "#gallery" ),
+          $trash = $( "#trash" );
+     
+        // Let the gallery items be draggable
+        $( "li", $gallery ).draggable({
+          cancel: "a.ui-icon", // clicking an icon won't initiate dragging
+          revert: "invalid", // when not dropped, the item will revert back to its initial position
+          containment: "document",
+          cursor: "move"
+        });
+     
+        // Let the trash be droppable, accepting the gallery items
+        $trash.droppable({
+          accept: "#gallery > li",
+          classes: {
+            "ui-droppable-active": "ui-state-highlight"
+          },
+          drop: function( event, ui ) {
+            deleteImage( ui.draggable );
+            allDelete();
+          }
+        });
+     
+        // Image deletion function
+        function deleteImage( $item ) {
+          $item.fadeOut(function() {
+            var $list = $( "ul", $trash ).length ?
+              $( "ul", $trash ) :
+              $( "<ul class='gallery ui-helper-reset'/>" ).appendTo( $trash );
+     
+            $item.find( "a.ui-icon-trash" ).remove();
+          });
+        }
+
+        function allDelete() {
+            var elem = $("#gallery").children();
+            var c = 0;
+            for (var i = 0; i <= elem.length; i++) {
+                var st = $(elem[i]).css("display");
+                if (st == "none") {
+                    c += 1;
+                }
+            }
+            if (c >= elem.length - 1) {
+                $(".bg").addClass("newbg");
+                $(".img8").css("display", "block");
+                $(".img7").addClass("move-img");
+                console.log("go");
+            }
+        }
+
+      } );
+      </script>
+</body>
+</html>

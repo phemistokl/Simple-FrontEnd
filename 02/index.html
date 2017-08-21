@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title></title>
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+    <div id="background">
+        <div class="container">
+            <div class="css__box">
+                <ul class="box__items">
+                    <li><div class="block block_1">Css3 FadeIn FadeOut</div></li>
+                    <li><div class="block block_2">Css3 Transform Rotate</div></li>
+                    <li><div class="block block_3">Css3 Transform Scale</div></li>
+                    <li><div class="block block_4">Css3 Transform Move</div></li>
+                </ul>
+            </div>
+            <div class="buttom__box">
+                <ul class="box__items">
+                    <li><div class="buttom_1">Css Start</div></li>
+                    <li><div class="buttom_2">jQuery Start</div></li>
+                    <li><div class="buttom_3">Css Reset</div></li>
+                    <li><div class="buttom_4">jQuery Reset</div></li>
+                </ul>
+            </div>
+            <div class="jquery__box">
+                <ul class="box__items">
+                    <li><div class="block_11">jQuery FadeIn FadeOut</div></li>
+                    <li><div class="block_22">jQuery Transform Rotate</div></li>
+                    <li><div class="block_33">jQuery Transform Animate</div></li>
+                    <li><div class="block_44">jQuery Transform Zoom</div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/jQueryRotate.js"></script>
+    <script>
+        $(function () {
+           $('.buttom_1').click(function() {
+                $( ".block" ).addClass( "active" );
+           });
+           $('.buttom_3').click(function() {
+                $( ".block" ).removeClass( "active" );
+           });
+           $('.buttom_2').click(function() {
+                $( ".block_11" ).fadeOut(1000);
+                $(".block_22").rotate({angle: 0,
+      animateTo:360});
+                $(".block_33").animate({left: '-50px', top: "50px"});
+                $(".block_44").animate({height: '130%', width: "130%", top: "-13px", left: "-10px"});
+           });
+           $('.buttom_4').click(function() {
+                $( ".block_11" ).fadeIn(1000);
+                $(".block_22").rotate({angle: 0,
+      animateTo:-360});
+                $(".block_33").animate({left: '0px', top: "0px"});
+                $(".block_44").animate({height: '100%', width: "100%", top: "0px", left: "0px"});
+           });
+        });
+    </script>
+</body>
+
+</html>

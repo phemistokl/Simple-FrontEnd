@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title></title>
+    <link href="css/style_general.css" rel="stylesheet">
+    <link href="css/style_refract.css" rel="stylesheet">
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script>
+        $(function () {
+            $( ".drag_red" ).draggable({ 
+                axis: "y",
+                drag: function() {
+                    only();
+                } 
+            });
+
+            function only() {
+                var coordYell = $(".drag_yellow").offset();
+                var widthYell = $(".drag_yellow").width();
+                var heightYell = $(".drag_yellow").height();
+
+                var coordRed = $(".drag_red").offset();
+                var heightRed = $(".drag_red").height();
+
+                var mapItems = $(".map").children();
+
+                
+
+                var yellLeft = coordYell.left;
+                var yellTop = coordYell.top;
+                var yellRight = yellLeft + widthYell;
+                var yellButtom = yellTop + heightYell;
+
+                var redLeft = coordRed.left;
+                var redTop = coordRed.top;
+                var redButtom = redTop + heightRed;
+
+                for (var i = 0; i <= mapItems.length - 1; i++) {
+                    var st = $(mapItems[i]).offset();
+                    var stLeft = st.left + $(mapItems[i]).width() / 2;
+                    var stTop = st.top + $(mapItems[i]).height() / 2;
+                    //console.log(stLeft, stTop);
+                    //console.log(yellLeft, redTop, yellRight, redButtom);
+
+                    if (stLeft >= yellLeft && stLeft <= yellRight && stTop >= redTop && stTop <= redButtom) {
+                        $(mapItems[i]).addClass("red");
+                    } else {
+                        $(mapItems[i]).removeClass("red");
+                    }
+                }
+
+                //console.log(yellLeft, yellTop, yellRight, yellButtom);
+                
+                //console.log(mapItems);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="Stage_base">
+            <div class="map_area">
+                <ul class="map">
+                    <li></li>
+                    <li class="yellow"></li>
+                    <li class="yellow"></li>
+                    <li class="yellow"></li>
+                    <li class="yellow"></li>
+                    <li class="yellow"></li>
+                    <li></li>
+                    <li class="yellow"></li>
+                    <li></li>
+                </ul>
+                <div class="drag_red_wrapper">
+                    <div class="drag_red"></div>
+                </div>
+                <div class="drag_yellow_wrapper">
+                    <div class="drag_yellow"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
