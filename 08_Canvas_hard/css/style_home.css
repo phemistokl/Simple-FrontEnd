@@ -20,7 +20,7 @@
 			left:0;
 			width:544px;
 			height:544px;
-			-webkit-transform: rotate3d(0, 0, -1, 90deg);
+/*			-webkit-transform: rotate3d(0, 0, -1, 90deg);*/
 			}
 		
 	ul.timer_symptom {
@@ -630,13 +630,4 @@ text-align:left!important;
      background:url(../images/home/new/i1.png);
 } 
 
-#circle {
-	margin-left: 23px;
-    padding-top: 23px;
-}
 
-#circle_bigger {
-	position: absolute;
-	left: -27px;
-    top: -27px;
-}

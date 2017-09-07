@@ -12,38 +12,13 @@
     <script src="js/jquery-1.8.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
-    <script src="js/circle-progress.js"></script>
     <script>
         $(function () {
             function action() {
                 $(".arrow_box").addClass("active");
             }
-            action();
-
-            $('#circle').circleProgress({
-                value: 0.92,
-                size: 500,
-                animation: { duration: 5000, easing: "circleProgressEasing" },
-                startAngle: Math.PI / 4 * 3.3,
-                fill: {gradient: [['#0f5895', .5], ['#4ac5f8', .5]], gradientAngle: Math.PI / 2 }
-            });
-
-            function secondCircle() {
-                $('#circle_bigger').circleProgress({
-                    value: 0.25,
-                    size: 600,
-                    animation: { duration: 5000, easing: "circleProgressEasing" },
-                    startAngle: -Math.PI / 4 * 4,
-                    fill: {gradient: [['#0f5895', .5], ['#7f8bbe', .5]], gradientAngle: -Math.PI / 4 * 3 }
-                });
-            }
-
-            setTimeout(function() { secondCircle() }, 5000);
-            
+            action();           
         });
-    </script>
-    <script>
-      
     </script>
 </head>
 
@@ -51,8 +26,7 @@
     <div class="wrapper">
         <div class="Stage_base">
             <div class="canvas_area">
-                <div id="circle_bigger"></div>
-                <div id="circle"></div>
+                <canvas id="canvas_int" width="544" height="544"></canvas>
             </div>
             <div class="arrow_box">
                 <div class="arr_hour"></div>
@@ -60,5 +34,6 @@
             </div>
         </div>
     </div>
+    <script src="js/myscript.js"></script>
 </body>
 </html>
